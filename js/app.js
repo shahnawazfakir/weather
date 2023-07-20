@@ -100,72 +100,12 @@ switchButton.addEventListener("click", function () {
 
     if (isDarkMode) {
         // Switch to light mode
-        switchButton.querySelector("img").src = "./assets/icons/weather_icons/01d.svg";
+        switchButton.querySelector("img").src = "./assets/images/weather_icons/01d.svg";
         toggleDarkMode(true);
     } else {
         // Switch to dark mode
         switchButton.querySelector("img").src = "./assets/images/weather_icons/01n.svg";
         toggleDarkMode(false);
-    }
-});
-
-// press enter to search the first item in the search list
-searchField.addEventListener("keyup", function (event) {
-    if (event.key === "Enter") {
-        event.preventDefault(); // Prevent the default Enter key behavior
-
-        searchTimeout ?? clearTimeout(searchTimeout);
-
-        if (!searchField.value) {
-            searchResult.classList.remove("active");
-            searchResult.innerHTML = "";
-            searchField.classList.remove("searching");
-        } else {
-            searchField.classList.add("searching");
-        }
-
-        if (searchField.value) {
-            searchTimeout = setTimeout(() => {
-                fetchData(url.geo(searchField.value), function (locations) {
-                    searchField.classList.remove("searching");
-                    searchResult.classList.add("active");
-                    searchResult.innerHTML = `
-                        <ul class="view-list" data-search-list></ul>
-                    `;
-
-                    const items = [];
-                    for (const { name, lat, lon, country, state } of locations) {
-                        const searchItem = document.createElement("li");
-                        searchItem.classList.add("view-item");
-
-                        searchItem.innerHTML = `
-                            <span class="m-icon"><img width="20" height="20" src="./assets/images/weather_icons/location.png" alt="location"></span>
-                            <div>
-                                <p class="item-title">${name}</p>
-
-                                <p class="label-2 item-subtitle">${state || ""} ${country}</p>
-                            </div>
-                            <a href="#/weather?lat=${lat}&lon=${lon}" class="item-link has-state" aria-label="${name} weather" data-search-toggler></a>
-                        `;
-
-                        searchResult.querySelector("[data-search-list]").appendChild(searchItem);
-                        items.push(searchItem.querySelector("[data-search-toggler]"));
-                    }
-
-                    addEventOnElements(items, "click", function () {
-                        toggleSearch();
-                        searchResult.classList.remove("active");
-                    });
-
-                    const firstItem = searchResult.querySelector(".view-item:first-child [data-search-toggler]");
-                    if (firstItem) {
-                        firstItem.click();
-                        currentLocationBtn.querySelector('.span').textContent = 'Current Location';
-                        currentLocationBtn.removeAttribute("disabled");
-                    }
-                });
-            }, searchTimeoutDuration);
-        }
     }
 });
 
