@@ -100,7 +100,7 @@ switchButton.addEventListener("click", function () {
 
     if (isDarkMode) {
         // Switch to light mode
-        switchButton.querySelector("img").src = "/assets/images/weather_icons/01d.svg";
+        switchButton.querySelector("img").src = "assets/icons/01d.svg";
         toggleDarkMode(true);
     } else {
         // Switch to dark mode
