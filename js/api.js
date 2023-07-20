@@ -15,11 +15,11 @@ tempSwitchBtn.addEventListener('click', () => {
     if (fahrenheit) {
         temperatureUnit = 'metric';
         checkHash();
-        tempSwitchBtn.querySelector("img").src = "assets/images/weather_icons/celsius.png";
+        tempSwitchBtn.querySelector("img").src = "./assets/images/weather_icons/celsius.png";
     } else {
         temperatureUnit = 'imperial';
         checkHash();
-        tempSwitchBtn.querySelector("img").src = "assets/images/weather_icons/fahrenheit.png";
+        tempSwitchBtn.querySelector("img").src = "./assets/images/weather_icons/fahrenheit.png";
     }
 });
 

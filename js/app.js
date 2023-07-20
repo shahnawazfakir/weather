@@ -64,7 +64,7 @@ searchField.addEventListener("input", function () {
                     searchItem.classList.add("view-item");
 
                     searchItem.innerHTML = `
-                        <span class="m-icon"><img width="20" height="20" src="/assets/images/weather_icons/location.png" alt="location"></span>
+                        <span class="m-icon"><img width="20" height="20" src="./assets/images/weather_icons/location.png" alt="location"></span>
                         <div>
                             <p class="item-title">${name}</p>
                             <p class="label-2 item-subtitle">${state || ""} ${country}</p>
@@ -100,11 +100,11 @@ switchButton.addEventListener("click", function () {
 
     if (isDarkMode) {
         // Switch to light mode
-        switchButton.querySelector("img").src = "assets/icons/01d.svg";
+        switchButton.querySelector("img").src = "./assets/icons/weather_icons/01d.svg";
         toggleDarkMode(true);
     } else {
         // Switch to dark mode
-        switchButton.querySelector("img").src = "/assets/images/weather_icons/01n.svg";
+        switchButton.querySelector("img").src = "./assets/images/weather_icons/01n.svg";
         toggleDarkMode(false);
     }
 });
@@ -139,7 +139,7 @@ searchField.addEventListener("keyup", function (event) {
                         searchItem.classList.add("view-item");
 
                         searchItem.innerHTML = `
-                            <span class="m-icon"><img width="20" height="20" src="/assets/images/weather_icons/location.png" alt="location"></span>
+                            <span class="m-icon"><img width="20" height="20" src="./assets/images/weather_icons/location.png" alt="location"></span>
                             <div>
                                 <p class="item-title">${name}</p>
 
@@ -230,19 +230,19 @@ export const updateWeather = function (lat, lon) {
             <h2 class="title-2 card-title">Now</h2>
             <div class="weapper">
                 <p class="heading">${parseInt(temp)}&deg;</p>
-                <img src="/assets/images/weather_icons/${icon}.svg" alt="${description}"
+                <img src="./assets/images/weather_icons/${icon}.svg" alt="${description}"
                     class="weather-icon">
             </div>
 
             <p class="body-3">${description}</p>
             <ul class="meta-list">
                 <li class="meta-item">
-                    <img width="24" height="24" src="/assets/images/weather_icons/calender.png" alt="calendar"/>
+                    <img width="24" height="24" src="./assets/images/weather_icons/calender.png" alt="calendar"/>
                     <p class="title-3 meta-text">${module.getDate(dateUnix, timezone)}</p>
                 <li>
 
                 <li class="meta-item">
-                <img width="24" height="24" src="/assets/images/weather_icons/location1.png" alt="location">
+                <img width="24" height="24" src="./assets/images/weather_icons/location1.png" alt="location">
                     <p class="title-3 meta-text" data-location></p>
                 </li>
             </ul>
@@ -273,7 +273,7 @@ export const updateWeather = function (lat, lon) {
                     <h3 class="title-3">Sunrise & Sunset</h3>
                     <div class="card-list">
                         <div class="card-item">
-                            <img src="/assets/images/weather_icons/sunrise.svg" width="64" height="64"
+                            <img src="./assets/images/weather_icons/sunrise.svg" width="64" height="64"
                             alt="" class="weather-icon" title="">
                             <div>
                                 <p class="label-1">Sunrise</p>
@@ -281,7 +281,7 @@ export const updateWeather = function (lat, lon) {
                             </div>
                         </div>
                         <div class="card-item">
-                            <img src="/assets/images/weather_icons/sunset.svg" width="64" height="64"
+                            <img src="./assets/images/weather_icons/sunset.svg" width="64" height="64"
                             alt="" class="weather-icon2" title="">
                             <div>
                                 <p class="label-1">Sunset</p>
@@ -295,7 +295,7 @@ export const updateWeather = function (lat, lon) {
                     <h3 class="title-3">Air Quality Index</h3>
 
                     <div class="wrapper">
-                        <img src="/assets/images/weather_icons/wind.svg" width="64" height="64"
+                        <img src="./assets/images/weather_icons/wind.svg" width="64" height="64"
                         alt="" class="weather-icon" title="">
                         <ul class="card-list">
                             <li class="card-item">
@@ -330,7 +330,7 @@ export const updateWeather = function (lat, lon) {
                     <div class="card card-sm highlight-card">
                         <h3 class="title-3">Humidity</h3>
                         <div class="wrapper">
-                        <img src="/assets/images/weather_icons/humidity.svg" width="80" height="80"
+                        <img src="./assets/images/weather_icons/humidity.svg" width="80" height="80"
                         alt="" class="weather-icon" title="">
                             <p class="title-1">${humidity}<sub>%</sub></p>
                         </div>
@@ -339,7 +339,7 @@ export const updateWeather = function (lat, lon) {
                     <div class="card card-sm highlight-card">
                         <h3 class="title-3">Feels Like</h3>
                         <div class="wrapper">
-                            <img src="/assets/images/weather_icons/thermometer.svg" width="64" height="64"
+                            <img src="./assets/images/weather_icons/thermometer.svg" width="64" height="64"
                             alt="" class="weather-icon" title="">
                             <p class="title-1">${parseInt(feels_like)}&deg;</p>
                         </div>
@@ -348,7 +348,7 @@ export const updateWeather = function (lat, lon) {
                     <div class="card card-sm highlight-card">
                         <h3 class="title-3">Temp High</h3>
                         <div class="wrapper">
-                            <img src="/assets/images/weather_icons/temp_max.svg" width="64" height="64"
+                            <img src="./assets/images/weather_icons/temp_max.svg" width="64" height="64"
                             alt="" class="weather-icon" title="">
                             <p class="title-1">${parseInt(temp_max)}&deg;</p>
                         </div>
@@ -357,7 +357,7 @@ export const updateWeather = function (lat, lon) {
                     <div class="card card-sm highlight-card">
                         <h3 class="title-3">Temp Low</h3>
                         <div class="wrapper">
-                            <img src="/assets/images/weather_icons/temp_min.svg" width="64" height="64"
+                            <img src="./assets/images/weather_icons/temp_min.svg" width="64" height="64"
                             alt="" class="weather-icon" title="">
                             <p class="title-1">${parseInt(temp_min)}&deg;</p>
                         </div>
@@ -366,7 +366,7 @@ export const updateWeather = function (lat, lon) {
                     <div class="card card-sm highlight-card">
                         <h3 class="title-3">Visibility</h3>
                         <div class="wrapper">
-                            <img src="/assets/images/weather_icons/visibility.svg" width="50" height="50"
+                            <img src="./assets/images/weather_icons/visibility.svg" width="50" height="50"
                             alt="" class="weather-icon" title="">
                             <p class="title-1">${visibility_dist} ${units}</p>
                         </div>
@@ -376,7 +376,7 @@ export const updateWeather = function (lat, lon) {
                     <div class="card card-sm highlight-card">
                         <h3 class="title-3">Pressure</h3>
                         <div class="wrapper">
-                            <img src="/assets/images/weather_icons/pressure.svg" width="60" height="65"
+                            <img src="./assets/images/weather_icons/pressure.svg" width="60" height="65"
                             alt="" class="weather-icon" title="">
                             <p class="title-1">${module.hPa_to_inches(pressure).toFixed(2)}<sub>in</sub></p>
                         </div>
@@ -385,7 +385,7 @@ export const updateWeather = function (lat, lon) {
                     <div class="card card-sm highlight-card">
                         <h3 class="title-3">Precipitation</h3>
                         <div class="wrapper">
-                            <img src="/assets/images/weather_icons/precipitation.svg" width="60" height="60" alt="" class="weather-icon" title="">
+                            <img src="./assets/images/weather_icons/precipitation.svg" width="60" height="60" alt="" class="weather-icon" title="">
                             <p class="title-1">${rainValue.toPrecision(1)} <sub>mm</sub></p>
                         </div>
                     </div>
@@ -393,7 +393,7 @@ export const updateWeather = function (lat, lon) {
                     <div class="card card-sm highlight-card">
                         <h3 class="title-3">Wind</h3>
                         <div class="wrapper">
-                        <img src="/assets/images/weather_icons/direction.png" width="48" height="48"
+                        <img src="./assets/images/weather_icons/direction.png" width="48" height="48"
                         alt="direction" class="weather-icon1" style="transform: rotate(${windDirection - 180}deg)">
                             <p class="title-1">${getWindSpeedString(windSpeed)}</p>
                         </div>
@@ -449,7 +449,7 @@ export const updateWeather = function (lat, lon) {
                     tempLi.innerHTML = `
                       <div class="card card-sm slider-card">
                         <p class="body-3">${module.getHours(dateTimeUnix, timezone)}</p>
-                        <img src="/assets/images/weather_icons/${icon}.svg" width="64" height="64" 
+                        <img src="./assets/images/weather_icons/${icon}.svg" width="64" height="64" 
                         alt="${description}" class="weather-icon" title="${description}">
                         <p class="body-3">${parseInt(temp)}&deg;</p>
                       </div>
@@ -459,7 +459,7 @@ export const updateWeather = function (lat, lon) {
                     tempLi.innerHTML = `
                       <div class="card card-sm slider-card">
                         <p class="body-3">${module.getHours(dateTimeUnix, timezone)}</p>
-                        <img src="/assets/images/weather_icons/${icon}.svg" width="64" height="64"
+                        <img src="./assets/images/weather_icons/${icon}.svg" width="64" height="64"
                         alt="${description}" class="weather-icon" title="${description}">
                         <p class="body-3">${parseInt(temp)}&deg;</p>
                       </div>
@@ -471,7 +471,7 @@ export const updateWeather = function (lat, lon) {
                     tempLi.innerHTML = `
                       <div class="card card-sm slider-card">
                         <p class="body-3">${module.getHours(dateTimeUnix, timezone)}</p>
-                        <img src="/assets/images/weather_icons/${icon}.svg" width="64" height="64"
+                        <img src="./assets/images/weather_icons/${icon}.svg" width="64" height="64"
                         alt="${description}" class="weather-icon" title="${description}">
                         <p class="body-3">${parseInt(temp)}&deg;</p>
                       </div>
@@ -484,7 +484,7 @@ export const updateWeather = function (lat, lon) {
                     tempLi.innerHTML = `
                       <div class="card card-sm slider-card">
                         <p class="body-3">${module.getHours(dateTimeUnix, timezone)}</p>
-                        <img src="/assets/images/weather_icons/${icon}.svg" width="64" height="64"
+                        <img src="./assets/images/weather_icons/${icon}.svg" width="64" height="64"
                         alt="${description}" class="weather-icon" title="${description}">
                         <p class="body-3">${parseInt(temp)}&deg;</p>
                       </div>
@@ -519,7 +519,7 @@ export const updateWeather = function (lat, lon) {
 
                 li.innerHTML = `
                     <div class="icon-wrapper">
-                        <img src="/assets/images/weather_icons/${icon}.svg" width="48" height=48"
+                        <img src="./assets/images/weather_icons/${icon}.svg" width="48" height=48"
                         alt="${description}" class="weather-icon" title="${description}">
                         <span class="span">
                             <p class="title-2">${parseInt(temp_max)}&deg;</p>
