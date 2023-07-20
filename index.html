@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="weather">
+    <meta name="description" content="weather app by Shahnawaz">
+    <title>Weather</title>
+    <!-- Links -->
+    <link rel="icon" type="image/x-icon" href="assets/tabicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.3.0/css/all.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- JS -->
+    <script src="./js/app.js" type="module"></script>
+    <script src="./js/route.js" type="module"></script>
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="#/current-location" class="logo">
+                <img src="assets/logo.svg" alt="logo"></img>
+            </a>
+
+            <div class="search-view" data-search-view>
+                <div class="search-wrapper">
+                    <input type="search" name="search" placeholder="Search city..." autocomplete="off"
+                        class="search-field" data-search-field>
+
+                    <span class="m-icon leading-icon"><img width="22" height="22"
+                            src="assets/images/weather_icons/search.png" alt="search" /></span>
+
+                    <button class="icon-btn leading-icon has-state" aria-label="close search" data-search-toggler>
+                        <span class="m-icon leading-icon"><img width="22" height="22"
+                                src="assets/images/weather_icons/search.png" alt="search" /></span>
+                    </button>
+                </div>
+
+                <div class="search-result" data-search-result></div>
+            </div>
+
+            <div class="header-actions">
+                <button class="icon-btn has-state" aria-label="open search" data-search-toggler>
+                    <span class="m-icon leading-icon"><img width="20" height="20"
+                            src="assets/images/weather_icons/search.png" alt="search" /></span>
+                </button>
+
+                <button id="switch2" class="btn-switch">
+                    <span class="d-icon"><img width="48" height="48" src="/assets/images/weather_icons/01n.svg" /
+                            alt="icon"></span>
+                </button>
+
+                <button id="switch" class="btn-switch">
+                    <span class="d-icon"><img width="40" height="40" src="assets/images/weather_icons/fahrenheit.png"
+                            alt="fahrenheit-symbol" /></span>
+                </button>
+
+                <a href="#/current-location" id="location" class="btn-primary has-state" data-current-location-btn>
+                    <span class="d-icon"><img width="30" height="30"
+                            src="assets/images/weather_icons/cl.png" alt="current-location" /></span>
+                    <span class="span">Current Location</span>
+                </a>
+
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <article class="container" data-container>
+
+            <div class="content-left">
+                <!-- Current Weather -->
+                <section class="section current-weather" aria-label="current weather" data-current-weather></section>
+
+                <!-- Forecast -->
+                <section class="section forecast" aria-labelledby="forecast-label" data-5-day-forecast></section>
+            </div>
+
+            <div class="content-right">
+                <!-- Highlights -->
+                <section class="section highlights" aria-labelledby="highlights-label" data-highlights></section>
+
+                <!-- Hourly Forecast -->
+                <section class="section hourly-forecast" aria-label="hourly forecast" data-hourly-forecast></section>
+
+                <!-- Footer -->
+                <footer class="footer">
+                    <a href="https://shahnawazfakir.github.io/" class="self_page">
+                        <p class="hover-underline-animation">By Shahnawaz 👨🏻‍💻</p>
+                    </a>
+                </footer>
+
+            </div>
+
+            <div class="loading" data-loading></div>
+
+        </article>
+    </main>
+
+    <!-- Error 404 -->
+    <section class="error-content" data-error-content>
+        <h2 class="heading">404</h2>
+        <p class="body-1">Page not found!</p>
+        <a href="#/weather?lat=42.373611&lon=-71.110558" class="btn-primary">
+            <span class="span">Go Home</span>
+        </a>
+    </section>
+
+</body>
+
+</html>
