@@ -933,7 +933,7 @@ article.container::before {
 
   /* Header */
   .header-actions {
-    gap: 24px;
+    gap: 22px;
   }
 
   .header .btn-primary {
