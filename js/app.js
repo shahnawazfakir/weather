@@ -505,7 +505,8 @@ export const updateWeather = function (lat, lon) {
                 </div>
             `;
 
-            for (let i = 0, len = forecastList.length; i < len; i += 8) {
+
+            for (let i = 7, len = forecastList.length; i < len; i += 8) {
                 const {
                     main: { temp_max },
                     weather,
