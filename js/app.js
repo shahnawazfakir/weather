@@ -34,6 +34,12 @@ function getDayAfterTomorrow1() {
     return dayAfterTomorrow.toLocaleString("en-US", { weekday: "long" });
 }
 
+function isSameDate(date1, date2) {
+    return date1.getFullYear() === date2.getFullYear()
+        && date1.getMonth() === date2.getMonth()
+        && date1.getDate() === date2.getDate();
+}
+
 let searchTimeout = null;
 const searchTimeoutDuration = 500;
 
@@ -408,7 +414,7 @@ export const updateWeather = function (lat, lon) {
             const {
                 list: forecastList,
                 city: { timezone }
-            } = forecast
+            } = forecast;
 
             hourlySection.innerHTML = `
                 <h2 class="title-2">Today</h2>
@@ -417,17 +423,25 @@ export const updateWeather = function (lat, lon) {
                 </div>
                 <h3 class="title-2">Tomorrow</h3>
                 <div class="slider-container">
-                    <ul class="slider-list" data-temp-tomorrow>
+                    <ul class="slider-list" data-temp-tomorrow></ul>
                 </div>
                 <h3 class="title-2">${getDayAfterTomorrow()}</h3>
                 <div class="slider-container">
-                    <ul class="slider-list" data-temp-tomorrow1>
+                    <ul class="slider-list" data-temp-tomorrow1></ul>
                 </div>
                 <h3 class="title-2">${getDayAfterTomorrow1()}</h3>
                 <div class="slider-container">
-                <ul class="slider-list" data-temp-tomorrow2>
+                    <ul class="slider-list" data-temp-tomorrow2></ul>
                 </div>
             `;
+
+            const currentDate = new Date();
+            const tomorrowDate = new Date(currentDate);
+            tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+            const dayAfterTomorrowDate = new Date(currentDate);
+            dayAfterTomorrowDate.setDate(dayAfterTomorrowDate.getDate() + 2);
+            const dayAfterTomorrowDate1 = new Date(currentDate);
+            dayAfterTomorrowDate1.setDate(dayAfterTomorrowDate1.getDate() + 3);
 
             for (const [index, data] of forecastList.entries()) {
                 if (index > 36) break;
@@ -436,63 +450,36 @@ export const updateWeather = function (lat, lon) {
                     dt: dateTimeUnix,
                     main: { temp },
                     weather
-                } = data
-                const [{ icon, description }] = weather
+                } = data;
+
+                const [{ icon, description }] = weather;
 
                 const tempLi = document.createElement("li");
                 tempLi.classList.add("slider-item");
 
                 const forecastDate = new Date(dateTimeUnix * 1000);
-                const currentDate = new Date();
 
-                if (forecastDate.getDate() === currentDate.getDate()) {
-                    tempLi.innerHTML = `
-                      <div class="card card-sm slider-card">
-                        <p class="body-3">${module.getHours(dateTimeUnix, timezone)}</p>
-                        <img src="./assets/images/weather_icons/${icon}.svg" width="64" height="64" 
-                        alt="${description}" class="weather-icon" title="${description}">
-                        <p class="body-3">${parseInt(temp)}&deg;</p>
-                      </div>
-                    `;
-                    hourlySection.querySelector("[data-temp]").appendChild(tempLi);
-                } else if (forecastDate.getDate() === currentDate.getDate() + 1) {
-                    tempLi.innerHTML = `
-                      <div class="card card-sm slider-card">
+                tempLi.innerHTML = `
+                    <div class="card card-sm slider-card">
                         <p class="body-3">${module.getHours(dateTimeUnix, timezone)}</p>
                         <img src="./assets/images/weather_icons/${icon}.svg" width="64" height="64"
-                        alt="${description}" class="weather-icon" title="${description}">
+                            alt="${description}" class="weather-icon" title="${description}">
                         <p class="body-3">${parseInt(temp)}&deg;</p>
-                      </div>
-                    `;
+                    </div>
+                `;
 
-                    hourlySection.querySelector("[data-temp]").appendChild(tempLi);
-                    hourlySection.querySelector("[data-temp-tomorrow]").appendChild(tempLi);
-                } else if (forecastDate.getDate() === currentDate.getDate() + 2) {
-                    tempLi.innerHTML = `
-                      <div class="card card-sm slider-card">
-                        <p class="body-3">${module.getHours(dateTimeUnix, timezone)}</p>
-                        <img src="./assets/images/weather_icons/${icon}.svg" width="64" height="64"
-                        alt="${description}" class="weather-icon" title="${description}">
-                        <p class="body-3">${parseInt(temp)}&deg;</p>
-                      </div>
-                    `;
+                const isToday = isSameDate(forecastDate, currentDate);
+                const isTomorrow = isSameDate(forecastDate, tomorrowDate);
+                const isDayAfterTomorrow = isSameDate(forecastDate, dayAfterTomorrowDate);
+                const isDayAfterTomorrow1 = isSameDate(forecastDate, dayAfterTomorrowDate1);
 
+                if (isToday) {
                     hourlySection.querySelector("[data-temp]").appendChild(tempLi);
+                } else if (isTomorrow) {
                     hourlySection.querySelector("[data-temp-tomorrow]").appendChild(tempLi);
+                } else if (isDayAfterTomorrow) {
                     hourlySection.querySelector("[data-temp-tomorrow1]").appendChild(tempLi);
-                } else if (forecastDate.getDate() === currentDate.getDate() + 3) {
-                    tempLi.innerHTML = `
-                      <div class="card card-sm slider-card">
-                        <p class="body-3">${module.getHours(dateTimeUnix, timezone)}</p>
-                        <img src="./assets/images/weather_icons/${icon}.svg" width="64" height="64"
-                        alt="${description}" class="weather-icon" title="${description}">
-                        <p class="body-3">${parseInt(temp)}&deg;</p>
-                      </div>
-                    `;
-
-                    hourlySection.querySelector("[data-temp]").appendChild(tempLi);
-                    hourlySection.querySelector("[data-temp-tomorrow]").appendChild(tempLi);
-                    hourlySection.querySelector("[data-temp-tomorrow1]").appendChild(tempLi);
+                } else if (isDayAfterTomorrow1) {
                     hourlySection.querySelector("[data-temp-tomorrow2]").appendChild(tempLi);
                 }
             }
@@ -505,7 +492,7 @@ export const updateWeather = function (lat, lon) {
                 </div>
             `;
 
-            for (let i = 0, len = forecastList.length; i < len; i += 8) {
+            for (let i = 7, len = forecastList.length; i < len; i += 8) {
                 const {
                     main: { temp_max },
                     weather,
